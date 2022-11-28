@@ -22,7 +22,7 @@ class ProductListActivity: AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         dbRef = database.getReference("Product")
         flowerList = arrayListOf<Flower>()
-        dbRef.child("Product").get().addOnSuccessListener {
+        dbRef.child("products").get().addOnSuccessListener {
             Toast.makeText( context,"in???", Toast.LENGTH_LONG).show()
             if(it.childrenCount.toInt() == 0){
                 insertProducts()

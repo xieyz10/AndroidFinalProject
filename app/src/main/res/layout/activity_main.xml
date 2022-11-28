@@ -60,23 +60,4 @@
         android:text="Register"
         android:onClick="btnRegister_pressed"
         />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Product(This button works as backend service)"
-        android:layout_gravity="center"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-    <Button
-        android:id="@+id/btn_addProduct"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Add product"
-        android:onClick="btnAddProduct_pressed"
-        />
 </LinearLayout>

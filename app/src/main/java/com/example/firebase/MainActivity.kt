@@ -67,22 +67,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun btnAddProduct_pressed(view: View){
-        if(view.id == R.id.btn_addProduct){
-            val productId1 = dbRef.push().key!!
-            val product1 = Flower(productId1,"violets","$8.99",1)
-            dbRef.child(productId1).setValue(product1)
-            val productId2 = dbRef.push().key!!
-            val product2 = Flower(productId2,"lavender","$11.99",2)
-            dbRef.child(productId2).setValue(product2)
-            val productId3 = dbRef.push().key!!
-            val product3 = Flower(productId3,"daisy","$7.99",3)
-            dbRef.child(productId3).setValue(product3)
-            val productId4 = dbRef.push().key!!
-            val product4 = Flower(productId4,"carnation","$12.99",4)
-            dbRef.child(productId4).setValue(product4)
-            Toast.makeText( context,"Success!", Toast.LENGTH_LONG).show()
-        }
-    }
-
 }
