@@ -3,6 +3,7 @@ package com.example.firebase
 import android.content.Context
 import android.os.Bundle
 import android.widget.ListView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.firebase.Entity.Flower
 import com.example.mingyuanxie_mapd711_assignment4.ProductAdapter
@@ -21,6 +22,14 @@ class ProductListActivity: AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         dbRef = database.getReference("Product")
         flowerList = arrayListOf<Flower>()
+        dbRef.child("Product").get().addOnSuccessListener {
+            Toast.makeText( context,"in???", Toast.LENGTH_LONG).show()
+            if(it.childrenCount.toInt() == 0){
+                insertProducts()
+            }
+        }.addOnFailureListener{
+
+        }
 //        getProductData()
     }
 
@@ -51,4 +60,20 @@ class ProductListActivity: AppCompatActivity() {
 //            }
 //        })
 //    }
+
+    fun insertProducts(){
+            val productId1 = dbRef.push().key!!
+            val product1 = Flower(productId1,"violets","$8.99",1)
+            dbRef.child(productId1).setValue(product1)
+            val productId2 = dbRef.push().key!!
+            val product2 = Flower(productId2,"lavender","$11.99",2)
+            dbRef.child(productId2).setValue(product2)
+            val productId3 = dbRef.push().key!!
+            val product3 = Flower(productId3,"daisy","$7.99",3)
+            dbRef.child(productId3).setValue(product3)
+            val productId4 = dbRef.push().key!!
+            val product4 = Flower(productId4,"carnation","$12.99",4)
+            dbRef.child(productId4).setValue(product4)
+            Toast.makeText( context,"Success!", Toast.LENGTH_LONG).show()
+        }
 }
