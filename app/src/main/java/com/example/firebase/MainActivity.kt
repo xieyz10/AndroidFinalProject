@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         context = this@MainActivity
         database = FirebaseDatabase.getInstance()
-        dbRef = database.getReference("Product")
+        dbRef = database.getReference("products")
         auth = Firebase.auth
     }
 
