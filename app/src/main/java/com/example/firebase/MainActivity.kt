@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity() {
             val productId4 = dbRef.push().key!!
             val product4 = Flower(productId4,"carnation","$12.99",4)
             dbRef.child(productId4).setValue(product4)
+            Toast.makeText( context,"Success!", Toast.LENGTH_LONG).show()
         }
     }
 
