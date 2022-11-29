@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp">
@@ -46,11 +46,8 @@
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:layout_marginTop="5dp"/>
-
             </LinearLayout>
-
         </LinearLayout>
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>
