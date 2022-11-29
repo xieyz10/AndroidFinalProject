@@ -2,6 +2,8 @@ package com.example.firebase
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -37,4 +39,28 @@ class ProductDetailsActivity: AppCompatActivity() {
         findViewById<TextView>(R.id.textView_flowerPrice).text = flowerPrice
     }
 
+    fun btnMinus_pressed(view: View){
+        if(view.id == R.id.btn_deduct){
+            val editText_productCount = findViewById<EditText>(R.id.editText_productCount)
+            var count = editText_productCount.text.toString().toInt()
+            if(count > 0){
+                count-=1
+                editText_productCount.setText(count.toString(), TextView.BufferType.EDITABLE);
+            }
+        }
+    }
+
+    fun btnAdd_pressed(view: View){
+        if(view.id == R.id.btn_plus){
+            val editText_productCount = findViewById<EditText>(R.id.editText_productCount)
+            var count = editText_productCount.text.toString().toInt()
+            count+=1
+            editText_productCount.setText(count.toString(), TextView.BufferType.EDITABLE);
+        }
+    }
+
+
+    fun btnPlaceOrder_pressed(){
+
+    }
 }
