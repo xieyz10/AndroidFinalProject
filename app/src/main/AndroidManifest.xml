@@ -18,7 +18,7 @@
             android:exported="false"
             android:label="Product Detail" />
         <activity
-            android:name=".ProductListActivity"
+            android:name=".HomeActivity"
             android:exported="false"
             android:label="Product List" />
         <activity

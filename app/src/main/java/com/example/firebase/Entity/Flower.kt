@@ -4,5 +4,5 @@ data class Flower(
     var flowerId: String,
     var flowerName: String,
     var flowerPrice: String,
-    var imageId:Int
+    var imageId:Int,
 )

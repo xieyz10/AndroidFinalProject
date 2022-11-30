@@ -4,12 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.firebase.Entity.Flower
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -42,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                         val sharedPref: SharedPreferences = this.getSharedPreferences("MyPref", MODE_PRIVATE)
                         val editor: SharedPreferences.Editor = sharedPref.edit()
                         editor.putString("userId",user?.uid.toString())
-                        var intent = Intent(this@MainActivity, ProductListActivity::class.java)
+                        var intent = Intent(this@MainActivity, HomeActivity::class.java)
                         startActivity(intent)
                     } else {
                         // If sign in fails, display a message to the user.
