@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.firebase.Entity.Flower
+import com.example.firebase.Fragment.CartFragment
 import com.example.firebase.Fragment.OrderFragment
 import com.example.firebase.Fragment.ProductListFragment
 import com.example.firebase.Fragment.SettingFragment
@@ -24,26 +25,28 @@ class HomeActivity: AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         dbRef = database.getReference("products")
         flowerList = arrayListOf<Flower>()
+        setBottomNavigation()
 
+    }
+
+    fun setBottomNavigation(){
         val productListFragment=ProductListFragment()
         val orderFragment=OrderFragment()
         val settingFragment=SettingFragment()
+        val cartFragment= CartFragment()
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.home->setCurrentFragment(productListFragment)
+                R.id.cart->setCurrentFragment(cartFragment)
                 R.id.orders->setCurrentFragment(orderFragment)
                 R.id.settings->setCurrentFragment(settingFragment)
-
             }
             true
         }
 
         setCurrentFragment(productListFragment)
-
-//        getProductData()
-//        setupListItemClickEvent()
     }
 
     private fun setCurrentFragment(fragment: Fragment)=
@@ -86,7 +89,5 @@ class HomeActivity: AppCompatActivity() {
 //
 //        })
 //    }
-
-
 
 }

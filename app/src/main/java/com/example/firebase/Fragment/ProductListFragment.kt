@@ -1,5 +1,6 @@
 package com.example.firebase.Fragment
 
+import android.R
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
@@ -8,11 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.FrameLayout
 import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.firebase.Entity.Flower
-import com.example.firebase.HomeActivity
 import com.example.firebase.ProductDetailsActivity
 import com.example.mingyuanxie_mapd711_assignment4.ProductAdapter
 import com.google.firebase.database.*
@@ -33,7 +35,6 @@ class ProductListFragment : Fragment() {
     private lateinit var database: FirebaseDatabase
     private lateinit var dbRef: DatabaseReference
     private lateinit var flowerList: ArrayList<Flower>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -45,7 +46,7 @@ class ProductListFragment : Fragment() {
         database = FirebaseDatabase.getInstance()
         dbRef = database.getReference("products")
         flowerList = arrayListOf<Flower>()
-        val contentView: View = inflater.inflate(com.example.firebase.R.layout.fragment_product_list, container, false)
+        var contentView: View= inflater.inflate(com.example.firebase.R.layout.fragment_product_list, container, false)
         val listView = contentView.findViewById<ListView>(com.example.firebase.R.id.listView_product)
         setListView(listView)
         setupListItemClickEvent(contentView)
@@ -98,6 +99,9 @@ class ProductListFragment : Fragment() {
             editor.putString("imageId",flowerList[position].imageId.toString())
             editor.commit()
             startActivity(intent)
+//            val fragment: Fragment = ProductDetailsFragment()
+//            val fragmentManager: FragmentManager? = fragmentManager
+//            fragmentManager!!.beginTransaction().replace(com.example.firebase.R.id.frameLayout_productList, fragment).commit()
         })
     }
 

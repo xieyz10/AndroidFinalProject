@@ -1,5 +1,6 @@
 package com.example.firebase
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
@@ -8,24 +9,32 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.firebase.Entity.Flower
-import com.google.firebase.database.FirebaseDatabase
+import androidx.fragment.app.FragmentTransaction
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ProductDetailsActivity: AppCompatActivity() {
 
+    var flowerId:String? = ""
+    var flowerName:String? = ""
+    var flowerPrice:String?= ""
+    var imageId:String?= ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setUpValue()
         setContentView(R.layout.activity_productdetails)
         setUpProductDetail()
     }
 
-    fun setUpProductDetail(){
+    fun setUpValue(){
         val sharedPref: SharedPreferences = this.getSharedPreferences("MyPref", MODE_PRIVATE)
-        val flowerId = sharedPref.getString("flowerId", "")
-        val flowerName = sharedPref.getString("flowerName", "")
-        val flowerPrice = sharedPref.getString("flowerPrice", "")
-        val imageId = sharedPref.getString("imageId", "")
-        Toast.makeText( this,imageId.toString(), Toast.LENGTH_LONG).show()
+        flowerId = sharedPref.getString("flowerId", "")
+        flowerName = sharedPref.getString("flowerName", "")
+        flowerPrice = sharedPref.getString("flowerPrice", "")
+        imageId = sharedPref.getString("imageId", "")
+    }
+
+    fun setUpProductDetail(){
+
         if(flowerName == "violets"){
             findViewById<ImageView>(R.id.imageView_flower).setImageResource(R.drawable.violets)
         }else if(flowerName == "lavender"){
@@ -60,7 +69,15 @@ class ProductDetailsActivity: AppCompatActivity() {
     }
 
 
-    fun btnPlaceOrder_pressed(){
+    fun btnAddToCart_pressed(view:View){
+        if(view.id == R.id.btn_addToCart){
 
+        }
+    }
+
+    fun btnPlaceOrder_pressed(view:View){
+        if(view.id == R.id.btn_placeOrder){
+
+        }
     }
 }

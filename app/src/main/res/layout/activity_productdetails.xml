@@ -89,24 +89,20 @@
 
     </LinearLayout>
     <Button
+        android:id="@+id/btn_addToCart"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Add To Cart"
+        android:onClick="btnAddToCart_pressed"
+        android:backgroundTint="@color/green"
+        />
+    <Button
         android:id="@+id/btn_placeOrder"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Place Order"
         android:onClick="btnPlaceOrder_pressed"
         />
-    <RelativeLayout
-        android:id="@+id/relativeLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom" >
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_gravity="bottom"
-            android:layout_alignParentBottom="true"
-            app:menu="@menu/bottom_nav_menu"/>
-    </RelativeLayout>
 </LinearLayout>

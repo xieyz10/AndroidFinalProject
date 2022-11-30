@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         val user = auth.currentUser
-                        Toast.makeText( context,"Login Success!", Toast.LENGTH_LONG).show()
                         val sharedPref: SharedPreferences = this.getSharedPreferences("MyPref", MODE_PRIVATE)
                         val editor: SharedPreferences.Editor = sharedPref.edit()
                         editor.putString("userId",user?.uid.toString())
