@@ -38,7 +38,10 @@ class MainActivity : AppCompatActivity() {
                         val user = auth.currentUser
                         val sharedPref: SharedPreferences = this.getSharedPreferences("MyPref", MODE_PRIVATE)
                         val editor: SharedPreferences.Editor = sharedPref.edit()
-                        editor.putString("userId",user?.uid.toString())
+                        editor.putString("userId",user!!.uid.toString())
+                        editor.commit()
+//                        Toast.makeText(baseContext, sharedPref.getString("customerId",""),
+//                            Toast.LENGTH_SHORT).show()
                         var intent = Intent(this@MainActivity, HomeActivity::class.java)
                         startActivity(intent)
                     } else {

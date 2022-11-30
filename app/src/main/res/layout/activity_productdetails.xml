@@ -74,7 +74,7 @@
             android:layout_width="40dp"
             android:ems="10"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="1"
             android:gravity="center"
             />
         <Button

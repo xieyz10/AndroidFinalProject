@@ -1,5 +1,6 @@
 package com.example.firebase
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -9,17 +10,29 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentTransaction
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.firebase.Entity.Order
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
+import java.util.*
 
 class ProductDetailsActivity: AppCompatActivity() {
-
     var flowerId:String? = ""
     var flowerName:String? = ""
     var flowerPrice:String?= ""
     var imageId:String?= ""
+    var userId:String?= ""
+    lateinit var context: Context
+    private lateinit var database: FirebaseDatabase
+    private lateinit var dbRef: DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        context = this@ProductDetailsActivity
+        database = FirebaseDatabase.getInstance()
+        dbRef = database.getReference("Orders")
         setUpValue()
         setContentView(R.layout.activity_productdetails)
         setUpProductDetail()
@@ -31,6 +44,7 @@ class ProductDetailsActivity: AppCompatActivity() {
         flowerName = sharedPref.getString("flowerName", "")
         flowerPrice = sharedPref.getString("flowerPrice", "")
         imageId = sharedPref.getString("imageId", "")
+        userId = sharedPref.getString("userId", "")
     }
 
     fun setUpProductDetail(){
@@ -71,7 +85,20 @@ class ProductDetailsActivity: AppCompatActivity() {
 
     fun btnAddToCart_pressed(view:View){
         if(view.id == R.id.btn_addToCart){
+            var quantity = findViewById<EditText>(R.id.editText_productCount).text.toString().toInt()
+            val cost:Double = quantity * flowerPrice!!.substring(1)!!.toDouble()
+            val currentTime: Date = Calendar.getInstance().getTime()
+            val orderDate = currentTime.toString()
 
+            val orderId = dbRef.push().key!!
+            val order = Order(orderId,userId!!,flowerId!!,flowerName!!,quantity,cost,orderDate,"Ready To Check Out",imageId!!.toInt())
+            dbRef.child(orderId).setValue(order).addOnCompleteListener{
+                Toast.makeText( context,"The item has successfully been added to the cart!", Toast.LENGTH_LONG).show()
+                var intent = Intent(this@ProductDetailsActivity, HomeActivity::class.java)
+                startActivity(intent)
+            }.addOnFailureListener{ err->
+                Toast.makeText( context,"Error ${err.message}", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
