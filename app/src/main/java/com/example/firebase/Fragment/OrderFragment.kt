@@ -1,16 +1,21 @@
 package com.example.firebase.Fragment
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.Toast
+import com.example.firebase.Entity.Cart
 import com.example.firebase.Entity.Flower
 import com.example.firebase.Entity.Order
 import com.example.firebase.R
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.example.mingyuanxie_mapd711_assignment4.CartAdapter
+import com.example.mingyuanxie_mapd711_assignment4.OrderAdapter
+import com.google.firebase.database.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,11 +42,53 @@ class OrderFragment : Fragment() {
         database = FirebaseDatabase.getInstance()
         dbRef = database.getReference("orders")
         orderList = arrayListOf<Order>()
-        var contentView: View= inflater.inflate(com.example.firebase.R.layout.fragment_order, container, false)
-        val listView = contentView.findViewById<ListView>(com.example.firebase.R.id.listView_order)
-        //setListView(listView)
+        var contentView: View= inflater.inflate(R.layout.fragment_order, container, false)
+        val listView = contentView.findViewById<ListView>(R.id.listView_order)
+        setListView(listView)
         //setupListItemClickEvent(contentView)
         return contentView
     }
 
+    fun setListView(listView:ListView){
+        val sharedPref: SharedPreferences = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPref.edit()
+        val userId = sharedPref.getString("userId","")
+        dbRef.orderByChild("userId").equalTo(userId).addValueEventListener(object :
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                orderList = arrayListOf<Order>()
+                for(orderSnap in snapshot.children){
+                    val orderData = orderSnap.getValue()
+                    val order = orderData as HashMap<String, Any>
+                    val orderId = order["cartId"].toString()
+                    val userId = order["userId"].toString()
+                    val flowerId = order["flowerId"].toString()
+                    val flowerName = order["flowerName"].toString()
+                    val quantity = order["quantity"].toString().toInt()
+                    val cost = order["cost"].toString().toDouble()
+                    val orderDate = order["orderDate"].toString()
+                    val status = order["status"].toString()
+                    val imageId = order["imageId"].toString().toInt()
+                    val orderObj = Order(orderId, userId, flowerId, flowerName,quantity,cost,orderDate,status,imageId)
+                    if(orderObj.flowerName == "carnation"){
+                        orderObj.imageId = com.example.firebase.R.drawable.carnation
+                    }else if(orderObj.flowerName == "daisy"){
+                        orderObj.imageId = com.example.firebase.R.drawable.daisy
+                    }else if(orderObj.flowerName == "lavender"){
+                        orderObj.imageId = com.example.firebase.R.drawable.lavender
+                    }
+                    else if(orderObj.flowerName == "violets"){
+                        orderObj.imageId = com.example.firebase.R.drawable.violets
+                    }
+                    orderList.add(orderObj)
+                }
+                val listAdapter = OrderAdapter(activity!!,orderList)
+                listView.adapter = listAdapter
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText( context,"${error.message}", Toast.LENGTH_LONG).show()
+            }
+        })
+    }
 }

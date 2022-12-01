@@ -24,10 +24,10 @@ ArrayList<Order>):ArrayAdapter<Order>(context, R.layout.orderlist_item,arrayList
         val totalCost = view.findViewById<TextView>(R.id.textView_totalcost)
 
         imageView.setImageResource(arrayList[position].imageId)
-        flowerName.text = arrayList[position].FlowerName
-        orderDate.text = arrayList[position].OrderDate
-        quantity.setText(arrayList[position].Quantity.toString(), TextView.BufferType.EDITABLE);
-        totalCost.text = arrayList[position].Cost.toString()
+        flowerName.text = arrayList[position].flowerName
+        orderDate.text = arrayList[position].orderDate
+        quantity.setText(arrayList[position].quantity.toString(), TextView.BufferType.EDITABLE);
+        totalCost.text = "$"+arrayList[position].cost.toString()
         return view
     }
 }

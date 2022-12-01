@@ -2,12 +2,12 @@ package com.example.firebase.Entity
 
 data class Order(
     var orderId:String,
-    var UserId: String,
-    var FlowerId: String,
-    var FlowerName: String,
-    var Quantity:Int,
-    var Cost:Double,
-    var OrderDate: String,
-    var Status: String,
+    var userId: String,
+    var flowerId: String,
+    var flowerName: String,
+    var quantity:Int,
+    var cost:Double,
+    var orderDate: String,
+    var status: String,
     var imageId:Int
 )
