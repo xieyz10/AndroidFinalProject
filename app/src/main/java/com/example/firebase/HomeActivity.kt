@@ -4,56 +4,57 @@ import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.example.firebase.Entity.Flower
 import com.example.firebase.Fragment.CartFragment
 import com.example.firebase.Fragment.OrderFragment
 import com.example.firebase.Fragment.ProductListFragment
 import com.example.firebase.Fragment.SettingFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.tabs.TabLayout
 import com.google.firebase.database.*
 
 
 class HomeActivity: AppCompatActivity() {
     lateinit var context: Context
-    private lateinit var database: FirebaseDatabase
-    private lateinit var dbRef: DatabaseReference
-    private lateinit var flowerList: ArrayList<Flower>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         context = this@HomeActivity
-        database = FirebaseDatabase.getInstance()
-        dbRef = database.getReference("products")
-        flowerList = arrayListOf<Flower>()
-        setBottomNavigation()
+        //setBottomNavigation()
+        val viewPager = findViewById<ViewPager>(R.id.viewPager)
+        viewPager.adapter = PageAdapter(supportFragmentManager)
+
+        val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
+        tabLayout.setupWithViewPager(viewPager)
 
     }
 
-    fun setBottomNavigation(){
-        val productListFragment=ProductListFragment()
-        val orderFragment=OrderFragment()
-        val settingFragment=SettingFragment()
-        val cartFragment= CartFragment()
+//    fun setBottomNavigation(){
+//        val productListFragment=ProductListFragment()
+//        val orderFragment=OrderFragment()
+//        val settingFragment=SettingFragment()
+//        val cartFragment= CartFragment()
+//
+//        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+//        bottomNavigationView.setOnNavigationItemSelectedListener {
+//            when(it.itemId){
+//                R.id.home->setCurrentFragment(productListFragment)
+//                R.id.cart->setCurrentFragment(cartFragment)
+//                R.id.orders->setCurrentFragment(orderFragment)
+//                R.id.settings->setCurrentFragment(settingFragment)
+//            }
+//            true
+//        }
+//
+//        setCurrentFragment(productListFragment)
+//    }
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        bottomNavigationView.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.home->setCurrentFragment(productListFragment)
-                R.id.cart->setCurrentFragment(cartFragment)
-                R.id.orders->setCurrentFragment(orderFragment)
-                R.id.settings->setCurrentFragment(settingFragment)
-            }
-            true
-        }
-
-        setCurrentFragment(productListFragment)
-    }
-
-    private fun setCurrentFragment(fragment: Fragment)=
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.flFragment,fragment)
-            commit()
-        }
+//    private fun setCurrentFragment(fragment: Fragment)=
+//        supportFragmentManager.beginTransaction().apply {
+//            replace(R.id.flFragment,fragment)
+//            commit()
+//        }
 
 //    fun getProductData(){
 //        dbRef.addValueEventListener(object : ValueEventListener{

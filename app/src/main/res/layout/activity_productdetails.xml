@@ -95,7 +95,6 @@
         android:layout_gravity="center"
         android:text="Add To Cart"
         android:onClick="btnAddToCart_pressed"
-        android:backgroundTint="@color/green"
         />
     <Button
         android:id="@+id/btn_placeOrder"
@@ -104,5 +103,6 @@
         android:layout_gravity="center"
         android:text="Place Order"
         android:onClick="btnPlaceOrder_pressed"
+        android:backgroundTint="@color/green"
         />
 </LinearLayout>

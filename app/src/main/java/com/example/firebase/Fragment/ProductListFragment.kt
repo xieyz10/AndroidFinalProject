@@ -45,7 +45,6 @@ class ProductListFragment : Fragment() {
     ): View? {
         database = FirebaseDatabase.getInstance()
         dbRef = database.getReference("products")
-        flowerList = arrayListOf<Flower>()
         var contentView: View= inflater.inflate(com.example.firebase.R.layout.fragment_product_list, container, false)
         val listView = contentView.findViewById<ListView>(com.example.firebase.R.id.listView_product)
         setListView(listView)
@@ -54,6 +53,7 @@ class ProductListFragment : Fragment() {
     }
 
     fun setListView(listView:ListView){
+        flowerList = arrayListOf<Flower>()
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for(flowerSnap in snapshot.children){
@@ -99,6 +99,7 @@ class ProductListFragment : Fragment() {
             editor.putString("imageId",flowerList[position].imageId.toString())
             editor.commit()
             startActivity(intent)
+
 //            val fragment: Fragment = ProductDetailsFragment()
 //            val fragmentManager: FragmentManager? = fragmentManager
 //            fragmentManager!!.beginTransaction().replace(com.example.firebase.R.id.frameLayout_productList, fragment).commit()

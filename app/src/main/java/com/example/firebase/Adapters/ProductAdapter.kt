@@ -25,7 +25,7 @@ ArrayList<Flower>):ArrayAdapter<Flower>(context, R.layout.productlist_item,array
         val flowerPrice = view.findViewById<TextView>(R.id.textView_flowerPrice)
 
         flowerName.text = arrayList[position].flowerName
-        flowerPrice.text = arrayList[position].flowerPrice
+        flowerPrice.text = arrayList[position].flowerPrice + " each"
         imageView.setImageResource(arrayList[position].imageId)
         return view
     }

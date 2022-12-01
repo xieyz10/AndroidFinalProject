@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.firebase.Entity.Cart
 import com.example.firebase.Entity.Order
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -26,13 +27,13 @@ class ProductDetailsActivity: AppCompatActivity() {
     var userId:String?= ""
     lateinit var context: Context
     private lateinit var database: FirebaseDatabase
-    private lateinit var dbRef: DatabaseReference
+    private lateinit var dbRef_cart: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         context = this@ProductDetailsActivity
         database = FirebaseDatabase.getInstance()
-        dbRef = database.getReference("Orders")
+        dbRef_cart = database.getReference("carts")
         setUpValue()
         setContentView(R.layout.activity_productdetails)
         setUpProductDetail()
@@ -90,9 +91,9 @@ class ProductDetailsActivity: AppCompatActivity() {
             val currentTime: Date = Calendar.getInstance().getTime()
             val orderDate = currentTime.toString()
 
-            val orderId = dbRef.push().key!!
-            val order = Order(orderId,userId!!,flowerId!!,flowerName!!,quantity,cost,orderDate,"Ready To Check Out",imageId!!.toInt())
-            dbRef.child(orderId).setValue(order).addOnCompleteListener{
+            val cartId = dbRef_cart.push().key!!
+            val cart = Cart(cartId,userId!!,flowerId!!,flowerName!!,quantity,cost,orderDate,"Ready To Check Out",imageId!!.toInt())
+            dbRef_cart.child(cartId).setValue(cart).addOnCompleteListener{
                 Toast.makeText( context,"The item has successfully been added to the cart!", Toast.LENGTH_LONG).show()
                 var intent = Intent(this@ProductDetailsActivity, HomeActivity::class.java)
                 startActivity(intent)

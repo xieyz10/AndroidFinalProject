@@ -3,11 +3,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="900dp"
     android:id="@+id/frameLayout_productList"
     tools:context=".Fragment.ProductListFragment">
-
-
 
     <ListView
         android:id="@+id/listView_product"
