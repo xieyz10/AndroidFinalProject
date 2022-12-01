@@ -29,7 +29,7 @@ ArrayList<Cart>):ArrayAdapter<Cart>(context, R.layout.cartlist_item,arrayList) {
         val quantity = view.findViewById<EditText>(R.id.editText_quantity)
         val totalCost = view.findViewById<TextView>(R.id.textView_totalcost)
         val btn_placeOrder = view.findViewById<Button>(R.id.btn_cart_placeOrder_submit)
-        val btn_cancelOrder = view.findViewById<Button>(R.id.btn_cart_cancelOrder_submit)
+        val btn_deleteItem = view.findViewById<Button>(R.id.btn_cart_deleteItem_submit)
         imageView.setImageResource(arrayList[position].imageId)
         flowerName.text = arrayList[position].flowerName
         orderDate.text = arrayList[position].orderDate
@@ -53,7 +53,7 @@ ArrayList<Cart>):ArrayAdapter<Cart>(context, R.layout.cartlist_item,arrayList) {
             }
         }
 
-        btn_cancelOrder.setOnClickListener{
+        btn_deleteItem.setOnClickListener{
             Toast.makeText( context,"Your order has been canceled", Toast.LENGTH_LONG).show()
             dbRef_cart.child(arrayList[position].cartId).removeValue()
         }

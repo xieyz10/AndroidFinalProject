@@ -60,7 +60,7 @@ class OrderFragment : Fragment() {
                 for(orderSnap in snapshot.children){
                     val orderData = orderSnap.getValue()
                     val order = orderData as HashMap<String, Any>
-                    val orderId = order["cartId"].toString()
+                    val orderId = order["orderId"].toString()
                     val userId = order["userId"].toString()
                     val flowerId = order["flowerId"].toString()
                     val flowerName = order["flowerName"].toString()
