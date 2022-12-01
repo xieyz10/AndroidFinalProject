@@ -61,7 +61,7 @@ class CartFragment : Fragment() {
                 for(cartSnap in snapshot.children){
                     val cartData = cartSnap.getValue()
                     val cart = cartData as HashMap<String, Any>
-                    val cartId = cart["CartId"].toString()
+                    val cartId = cart["cartId"].toString()
                     val userId = cart["userId"].toString()
                     val flowerId = cart["flowerId"].toString()
                     val flowerName = cart["flowerName"].toString()

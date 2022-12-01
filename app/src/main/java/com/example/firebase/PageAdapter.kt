@@ -32,7 +32,7 @@ class PageAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getPageTitle(position: Int): CharSequence? {
         when(position) {
             0 -> {
-                return "Product List"
+                return "Product"
             }
             1 -> {
                 return "Cart"
