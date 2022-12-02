@@ -28,12 +28,13 @@ class ProductDetailsActivity: AppCompatActivity() {
     lateinit var context: Context
     private lateinit var database: FirebaseDatabase
     private lateinit var dbRef_cart: DatabaseReference
-
+    private lateinit var dbRef_order: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         context = this@ProductDetailsActivity
         database = FirebaseDatabase.getInstance()
         dbRef_cart = database.getReference("carts")
+        dbRef_order = database.getReference("orders")
         setUpValue()
         setContentView(R.layout.activity_productdetails)
         setUpProductDetail()
@@ -56,8 +57,10 @@ class ProductDetailsActivity: AppCompatActivity() {
             findViewById<ImageView>(R.id.imageView_flower).setImageResource(R.drawable.lavender)
         }else if(flowerName == "daisy"){
             findViewById<ImageView>(R.id.imageView_flower).setImageResource(R.drawable.daisy)
-        } else if(flowerName == "carnation"){
+        }else if(flowerName == "carnation"){
             findViewById<ImageView>(R.id.imageView_flower).setImageResource(R.drawable.carnation)
+        }else if(flowerName == "jasmine"){
+            findViewById<ImageView>(R.id.imageView_flower).setImageResource(R.drawable.jasmine)
         }
         findViewById<TextView>(R.id.textView_flowerName).text = flowerName
         findViewById<TextView>(R.id.textView_flowerPrice).text = flowerPrice
@@ -105,7 +108,24 @@ class ProductDetailsActivity: AppCompatActivity() {
 
     fun btnPlaceOrder_pressed(view:View){
         if(view.id == R.id.btn_placeOrder){
-
+            var quantity = findViewById<EditText>(R.id.editText_productCount).text.toString().toInt()
+            val cost:Double = quantity * flowerPrice!!.substring(1)!!.toDouble()
+            val currentTime: Date = Calendar.getInstance().getTime()
+            val orderDate = currentTime.toString()
+            val orderId = dbRef_order.push().key!!
+            val order = Order(orderId,userId!!,flowerId!!,
+                flowerName!!,quantity,
+                cost,orderDate,"Placed",
+                imageId!!.toInt()
+            )
+            dbRef_order.child(orderId).setValue(order).addOnCompleteListener{
+                //btn_placeOrder.text = "Placed"
+                Toast.makeText( context,"Your order has been placed, Thank you!", Toast.LENGTH_LONG).show()
+                var intent = Intent(this@ProductDetailsActivity, HomeActivity::class.java)
+                startActivity(intent)
+            }.addOnFailureListener{ err->
+                Toast.makeText( context,"Error ${err.message}", Toast.LENGTH_LONG).show()
+            }
         }
     }
 }

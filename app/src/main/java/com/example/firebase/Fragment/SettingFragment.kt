@@ -9,8 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.example.firebase.Entity.Order
+import com.example.firebase.Entity.User
 import com.example.firebase.R
 import com.example.mingyuanxie_mapd711_assignment4.OrderAdapter
 import com.google.firebase.database.*
@@ -38,32 +40,66 @@ class SettingFragment : Fragment() {
         val sharedPref: SharedPreferences = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         val userId = sharedPref.getString("userId","")
 
+        var btn_update = contentView.findViewById<Button>(R.id.btn_update_submit)
+        val editText_firstName = contentView.findViewById<EditText>(R.id.editText_firstName)
+        val editText_lastName = contentView.findViewById<EditText>(R.id.editText_lastName)
+        val editText_address = contentView.findViewById<EditText>(R.id.editText_address)
+        val editText_city = contentView.findViewById<EditText>(R.id.editText_city)
+        val editText_state = contentView.findViewById<EditText>(R.id.editText_state)
+        val editText_country = contentView.findViewById<EditText>(R.id.editText_country)
+        val editText_postalCode = contentView.findViewById<EditText>(R.id.editText_postalCode)
+
         dbRef.orderByChild("userId").equalTo(userId).addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for(userSnap in snapshot.children) {
+                        val userData = userSnap.getValue()
+                        val userInfo= userData as HashMap<String, Any>
+                        editText_firstName.setText(userInfo["firstName"].toString(), TextView.BufferType.EDITABLE)
+                        editText_lastName.setText(userInfo["lastName"].toString(), TextView.BufferType.EDITABLE)
+                        editText_address.setText(userInfo["address"].toString(), TextView.BufferType.EDITABLE);
+                        editText_city.setText(userInfo["city"].toString(), TextView.BufferType.EDITABLE);
+                        editText_state.setText(userInfo["state"].toString(), TextView.BufferType.EDITABLE);
+                        editText_country.setText(userInfo["country"].toString(), TextView.BufferType.EDITABLE);
+                        editText_postalCode.setText(userInfo["postalCode"].toString(), TextView.BufferType.EDITABLE);
+                    }
+                }
             }
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText( context,"${error.message}", Toast.LENGTH_LONG).show()
             }
         })
 
-        var btn_update = contentView.findViewById<Button>(R.id.btn_update_submit)
-        val firstName = contentView.findViewById<EditText>(R.id.editText_firstName)
-        val lastName = contentView.findViewById<EditText>(R.id.editText_lastName)
-        val address = contentView.findViewById<EditText>(R.id.editText_address)
-        val city = contentView.findViewById<EditText>(R.id.editText_city)
-        val state = contentView.findViewById<EditText>(R.id.editText_state)
-        val country = contentView.findViewById<EditText>(R.id.editText_country)
-        val postalCode = contentView.findViewById<EditText>(R.id.editText_postalCode)
-
         btn_update.setOnClickListener{
             dbRef.orderByChild("userId").equalTo(userId).addValueEventListener(object :
                 ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    val firstName = editText_firstName.text.toString()
+                    val lastName = editText_lastName.text.toString()
+                    val address = editText_address.text.toString()
+                    val city = editText_city.text.toString()
+                    val state = editText_state.text.toString()
+                    val country = editText_country.text.toString()
+                    val postalCode = editText_postalCode.text.toString()
                     if(snapshot.exists()){
-
+                        dbRef.child("users").child(userId!!).child("firstName").setValue(firstName)
+                        dbRef.child("users").child(userId!!).child("lastName").setValue(lastName)
+                        dbRef.child("users").child(userId!!).child("address").setValue(address)
+                        dbRef.child("users").child(userId!!).child("city").setValue(city)
+                        dbRef.child("users").child(userId!!).child("state").setValue(state)
+                        dbRef.child("users").child(userId!!).child("country").setValue(country)
+                        dbRef.child("users").child(userId!!).child("postalCode").setValue(postalCode)
+                        Toast.makeText( context,"You info has been successfully updated!", Toast.LENGTH_LONG).show()
                     }else{
-
+                        val user = User(userId,firstName,lastName,address,
+                            city,state,country,postalCode
+                        )
+                        dbRef.child(userId!!).setValue(user).addOnCompleteListener{
+                            Toast.makeText( context,"Success!!", Toast.LENGTH_LONG).show()
+                        }.addOnFailureListener{ err->
+                            Toast.makeText( context,"Error ${err.message}", Toast.LENGTH_LONG).show()
+                        }
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {

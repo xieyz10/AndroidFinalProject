@@ -45,6 +45,7 @@ class ProductListFragment : Fragment() {
     ): View? {
         database = FirebaseDatabase.getInstance()
         dbRef = database.getReference("products")
+
         var contentView: View= inflater.inflate(com.example.firebase.R.layout.fragment_product_list, container, false)
         val listView = contentView.findViewById<ListView>(com.example.firebase.R.id.listView_product)
         setListView(listView)
@@ -70,9 +71,10 @@ class ProductListFragment : Fragment() {
                         flowerObj.imageId = com.example.firebase.R.drawable.daisy
                     }else if(flowerObj.flowerName == "lavender"){
                         flowerObj.imageId = com.example.firebase.R.drawable.lavender
-                    }
-                    else if(flowerObj.flowerName == "violets"){
+                    }else if(flowerObj.flowerName == "violets"){
                         flowerObj.imageId = com.example.firebase.R.drawable.violets
+                    }else if(flowerObj.flowerName == "jasmine"){
+                        flowerObj.imageId = com.example.firebase.R.drawable.jasmine
                     }
                     flowerList.add(flowerObj)
                 }

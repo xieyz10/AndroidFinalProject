@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.firebase.Entity.Flower
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -40,8 +41,6 @@ class MainActivity : AppCompatActivity() {
                         val editor: SharedPreferences.Editor = sharedPref.edit()
                         editor.putString("userId",user!!.uid.toString())
                         editor.commit()
-//                        Toast.makeText(baseContext, sharedPref.getString("customerId",""),
-//                            Toast.LENGTH_SHORT).show()
                         var intent = Intent(this@MainActivity, HomeActivity::class.java)
                         startActivity(intent)
                     } else {
@@ -50,13 +49,6 @@ class MainActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT).show()
                     }
                 }
-//            dbRef.child("User").child(userName).get().addOnSuccessListener {
-//                Toast.makeText( context,"${it.value}", Toast.LENGTH_LONG).show()
-//                Log.i("firebase", "Got value ${it.value}")
-//            }.addOnFailureListener{
-//                Log.e("firebase", "Error getting data", it)
-//                Toast.makeText( context,"in???", Toast.LENGTH_LONG).show()
-//            }
         }
     }
 
@@ -68,3 +60,14 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+
+////**************
+//database = FirebaseDatabase.getInstance()
+//dbRef_prodduct = database.getReference("products")
+//val flowerId = dbRef_prodduct.push().key!!
+//val product = Flower(flowerId,"jasmine","6.99",5
+//)
+//dbRef_prodduct.child(flowerId).setValue(product).addOnCompleteListener{
+//}.addOnFailureListener{ err->
+//}
+////**************

@@ -77,9 +77,10 @@ class CartFragment : Fragment() {
                         cartObj.imageId = com.example.firebase.R.drawable.daisy
                     }else if(cartObj.flowerName == "lavender"){
                         cartObj.imageId = com.example.firebase.R.drawable.lavender
-                    }
-                    else if(cartObj.flowerName == "violets"){
+                    }else if(cartObj.flowerName == "violets"){
                         cartObj.imageId = com.example.firebase.R.drawable.violets
+                    }else if(cartObj.flowerName == "jasmine"){
+                        cartObj.imageId = com.example.firebase.R.drawable.jasmine
                     }
                     cartList.add(cartObj)
                 }

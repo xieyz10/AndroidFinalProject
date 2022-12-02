@@ -76,9 +76,10 @@ class OrderFragment : Fragment() {
                         orderObj.imageId = com.example.firebase.R.drawable.daisy
                     }else if(orderObj.flowerName == "lavender"){
                         orderObj.imageId = com.example.firebase.R.drawable.lavender
-                    }
-                    else if(orderObj.flowerName == "violets"){
+                    }else if(orderObj.flowerName == "violets"){
                         orderObj.imageId = com.example.firebase.R.drawable.violets
+                    }else if(orderObj.flowerName == "jasmine"){
+                        orderObj.imageId = com.example.firebase.R.drawable.jasmine
                     }
                     orderList.add(orderObj)
                 }
