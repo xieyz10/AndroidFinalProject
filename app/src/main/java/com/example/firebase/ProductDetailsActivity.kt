@@ -51,15 +51,15 @@ class ProductDetailsActivity: AppCompatActivity() {
 
     fun setUpProductDetail(){
 
-        if(flowerName == "violets"){
+        if(flowerName == "Violets"){
             findViewById<ImageView>(R.id.imageView_flower).setImageResource(R.drawable.violets)
-        }else if(flowerName == "lavender"){
+        }else if(flowerName == "Lavender"){
             findViewById<ImageView>(R.id.imageView_flower).setImageResource(R.drawable.lavender)
-        }else if(flowerName == "daisy"){
+        }else if(flowerName == "Daisy"){
             findViewById<ImageView>(R.id.imageView_flower).setImageResource(R.drawable.daisy)
-        }else if(flowerName == "carnation"){
+        }else if(flowerName == "Carnation"){
             findViewById<ImageView>(R.id.imageView_flower).setImageResource(R.drawable.carnation)
-        }else if(flowerName == "jasmine"){
+        }else if(flowerName == "Jasmine"){
             findViewById<ImageView>(R.id.imageView_flower).setImageResource(R.drawable.jasmine)
         }
         findViewById<TextView>(R.id.textView_flowerName).text = flowerName

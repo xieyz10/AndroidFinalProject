@@ -70,15 +70,15 @@ class OrderFragment : Fragment() {
                     val status = order["status"].toString()
                     val imageId = order["imageId"].toString().toInt()
                     val orderObj = Order(orderId, userId, flowerId, flowerName,quantity,cost,orderDate,status,imageId)
-                    if(orderObj.flowerName == "carnation"){
+                    if(orderObj.flowerName == "Carnation"){
                         orderObj.imageId = com.example.firebase.R.drawable.carnation
-                    }else if(orderObj.flowerName == "daisy"){
+                    }else if(orderObj.flowerName == "Daisy"){
                         orderObj.imageId = com.example.firebase.R.drawable.daisy
-                    }else if(orderObj.flowerName == "lavender"){
+                    }else if(orderObj.flowerName == "Lavender"){
                         orderObj.imageId = com.example.firebase.R.drawable.lavender
-                    }else if(orderObj.flowerName == "violets"){
+                    }else if(orderObj.flowerName == "Violets"){
                         orderObj.imageId = com.example.firebase.R.drawable.violets
-                    }else if(orderObj.flowerName == "jasmine"){
+                    }else if(orderObj.flowerName == "Jasmine"){
                         orderObj.imageId = com.example.firebase.R.drawable.jasmine
                     }
                     orderList.add(orderObj)

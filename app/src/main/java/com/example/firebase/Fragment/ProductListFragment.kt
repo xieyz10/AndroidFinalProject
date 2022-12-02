@@ -65,15 +65,15 @@ class ProductListFragment : Fragment() {
                     val flowerPrice = flower["flowerPrice"].toString()
                     val imageId = flower["imageId"].toString().toInt()
                     val flowerObj = Flower(flowerId, flowerName, flowerPrice, imageId)
-                    if(flowerObj.flowerName == "carnation"){
+                    if(flowerObj.flowerName == "Carnation"){
                         flowerObj.imageId = com.example.firebase.R.drawable.carnation
-                    }else if(flowerObj.flowerName == "daisy"){
+                    }else if(flowerObj.flowerName == "Daisy"){
                         flowerObj.imageId = com.example.firebase.R.drawable.daisy
-                    }else if(flowerObj.flowerName == "lavender"){
+                    }else if(flowerObj.flowerName == "Lavender"){
                         flowerObj.imageId = com.example.firebase.R.drawable.lavender
-                    }else if(flowerObj.flowerName == "violets"){
+                    }else if(flowerObj.flowerName == "Violets"){
                         flowerObj.imageId = com.example.firebase.R.drawable.violets
-                    }else if(flowerObj.flowerName == "jasmine"){
+                    }else{
                         flowerObj.imageId = com.example.firebase.R.drawable.jasmine
                     }
                     flowerList.add(flowerObj)

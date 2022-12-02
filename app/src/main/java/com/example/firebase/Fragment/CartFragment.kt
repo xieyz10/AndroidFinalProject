@@ -71,15 +71,15 @@ class CartFragment : Fragment() {
                     val status = cart["status"].toString()
                     val imageId = cart["imageId"].toString().toInt()
                     val cartObj = Cart(cartId, userId, flowerId, flowerName,quantity,cost,orderDate,status,imageId)
-                    if(cartObj.flowerName == "carnation"){
+                    if(cartObj.flowerName == "Carnation"){
                         cartObj.imageId = com.example.firebase.R.drawable.carnation
-                    }else if(cartObj.flowerName == "daisy"){
+                    }else if(cartObj.flowerName == "Daisy"){
                         cartObj.imageId = com.example.firebase.R.drawable.daisy
-                    }else if(cartObj.flowerName == "lavender"){
+                    }else if(cartObj.flowerName == "Lavender"){
                         cartObj.imageId = com.example.firebase.R.drawable.lavender
-                    }else if(cartObj.flowerName == "violets"){
+                    }else if(cartObj.flowerName == "Violets"){
                         cartObj.imageId = com.example.firebase.R.drawable.violets
-                    }else if(cartObj.flowerName == "jasmine"){
+                    }else if(cartObj.flowerName == "Jasmine"){
                         cartObj.imageId = com.example.firebase.R.drawable.jasmine
                     }
                     cartList.add(cartObj)
