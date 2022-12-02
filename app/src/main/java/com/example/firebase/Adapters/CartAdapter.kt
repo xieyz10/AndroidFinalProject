@@ -30,6 +30,21 @@ ArrayList<Cart>):ArrayAdapter<Cart>(context, R.layout.cartlist_item,arrayList) {
         val totalCost = view.findViewById<TextView>(R.id.textView_totalcost)
         val btn_placeOrder = view.findViewById<Button>(R.id.btn_cart_placeOrder_submit)
         val btn_deleteItem = view.findViewById<Button>(R.id.btn_cart_deleteItem_submit)
+        val btn_plus = view.findViewById<Button>(R.id.btn_plus)
+        val btn_deduct = view.findViewById<Button>(R.id.btn_deduct)
+        var price:Double = 0.0
+        if(arrayList[position].flowerName == "Violets"){
+            price = 8.99
+        }else if(arrayList[position].flowerName == "Lavender"){
+            price = 11.99
+        }else if(arrayList[position].flowerName == "Daisy"){
+            price = 7.99
+        }
+        else if(arrayList[position].flowerName == "Carnation"){
+            price = 12.99
+        }else if(arrayList[position].flowerName == "Jasmine"){
+            price = 6.99
+        }
         imageView.setImageResource(arrayList[position].imageId)
         flowerName.text = arrayList[position].flowerName
         orderDate.text = arrayList[position].orderDate
@@ -56,6 +71,28 @@ ArrayList<Cart>):ArrayAdapter<Cart>(context, R.layout.cartlist_item,arrayList) {
         btn_deleteItem.setOnClickListener{
             Toast.makeText( context,"Your order has been canceled", Toast.LENGTH_LONG).show()
             dbRef_cart.child(arrayList[position].cartId).removeValue()
+        }
+
+        btn_plus.setOnClickListener{
+            val editText_productCount = view.findViewById<EditText>(R.id.editText_quantity)
+            var count = editText_productCount.text.toString().toInt()
+            count+=1
+            arrayList[position].quantity = count
+            editText_productCount.setText(count.toString(), TextView.BufferType.EDITABLE);
+            totalCost.text = "$"+(price * count).toString()
+            arrayList[position].cost = price * count
+        }
+
+        btn_deduct.setOnClickListener{
+            val editText_productCount = view.findViewById<EditText>(R.id.editText_quantity)
+            var count = editText_productCount.text.toString().toInt()
+            if(count > 0){
+                count-=1
+                arrayList[position].quantity = count
+                editText_productCount.setText(count.toString(), TextView.BufferType.EDITABLE);
+                totalCost.text = "$"+(price * count).toString()
+                arrayList[position].cost = price * count
+            }
         }
 
         return view
