@@ -3,6 +3,7 @@ package com.example.firebase
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
@@ -126,6 +127,8 @@ class ProductDetailsActivity: AppCompatActivity() {
             }.addOnFailureListener{ err->
                 Toast.makeText( context,"Error ${err.message}", Toast.LENGTH_LONG).show()
             }
+            val MediaPlayer = MediaPlayer.create(this,R.raw.sound)
+            MediaPlayer.start()
         }
     }
 }

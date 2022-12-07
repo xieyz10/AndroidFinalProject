@@ -1,6 +1,7 @@
 package com.example.mingyuanxie_mapd711_assignment4
 
 import android.app.Activity
+import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,6 +67,8 @@ ArrayList<Cart>):ArrayAdapter<Cart>(context, R.layout.cartlist_item,arrayList) {
             }.addOnFailureListener{ err->
                 Toast.makeText( context,"Error ${err.message}", Toast.LENGTH_LONG).show()
             }
+            val MediaPlayer = MediaPlayer.create(context,R.raw.sound)
+            MediaPlayer.start()
         }
 
         btn_deleteItem.setOnClickListener{
