@@ -1,6 +1,7 @@
 package com.example.firebase.Fragment
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,7 +14,9 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.firebase.Entity.Order
 import com.example.firebase.Entity.User
+import com.example.firebase.MainActivity
 import com.example.firebase.R
+import com.example.firebase.RegisterActivity
 import com.example.mingyuanxie_mapd711_assignment4.OrderAdapter
 import com.google.firebase.database.*
 
@@ -41,6 +44,7 @@ class SettingFragment : Fragment() {
         val userId = sharedPref.getString("userId","")
 
         var btn_update = contentView.findViewById<Button>(R.id.btn_update_submit)
+        var btn_logout = contentView.findViewById<Button>(R.id.btn_logout_submit)
         val editText_firstName = contentView.findViewById<EditText>(R.id.editText_firstName)
         val editText_lastName = contentView.findViewById<EditText>(R.id.editText_lastName)
         val editText_address = contentView.findViewById<EditText>(R.id.editText_address)
@@ -106,6 +110,11 @@ class SettingFragment : Fragment() {
                     Toast.makeText( context,"${error.message}", Toast.LENGTH_LONG).show()
                 }
             })
+        }
+
+        btn_logout.setOnClickListener {
+            var intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
         }
 
         return contentView

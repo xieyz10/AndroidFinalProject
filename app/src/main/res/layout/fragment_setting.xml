@@ -175,6 +175,18 @@
             style="@style/button_margin"
             android:onClick="btnUpdate_pressed"
             />
+
+        <Button
+            android:id="@+id/btn_logout_submit"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Log out"
+            style="@style/button_margin"
+            android:onClick="btnLogout_pressed"
+            android:backgroundTint="@color/red"
+            android:layout_marginTop="70dp"
+            />
     </LinearLayout>
     </LinearLayout>
 </FrameLayout>
