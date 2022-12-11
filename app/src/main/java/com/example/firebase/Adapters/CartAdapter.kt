@@ -62,7 +62,7 @@ ArrayList<Cart>):ArrayAdapter<Cart>(context, R.layout.cartlist_item,arrayList) {
             dbRef_order.child(orderId).setValue(order).addOnCompleteListener{
                 //btn_placeOrder.text = "Placed"
                 dbRef_cart.child(arrayList[position].cartId).removeValue()
-                Toast.makeText( context,arrayList[position].cartId, Toast.LENGTH_LONG).show()
+//                Toast.makeText( context,arrayList[position].cartId, Toast.LENGTH_LONG).show()
 
             }.addOnFailureListener{ err->
                 Toast.makeText( context,"Error ${err.message}", Toast.LENGTH_LONG).show()
