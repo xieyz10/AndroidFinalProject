@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     }
 
         fun getBitmap(): Bitmap? {
-            val url = URL("https://www.desicomments.com/wp-content/uploads/2017/02/Rose-Flower-Image.jpg")
+            val url = URL("https://images.unsplash.com/photo-1538340794916-c941f42976f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2970&q=80")
             return BitmapFactory.decodeStream(url.openConnection().getInputStream())
         }
 

@@ -2,21 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    style="@style/screen_style"
+    >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
         android:layout_gravity="center"
-        android:textSize="25dp" />
+        style="@style/screen_title"
+         />
+    <ImageView
+        android:id="@+id/imageRegister_logo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/app_flowers"
+        android:layout_gravity="center"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
         <TextView
-            android:text="User name:"
-            android:textSize="20dp"
+            android:text="Username:"
+            android:textSize="18dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
@@ -31,10 +44,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
         <TextView
             android:text="Password:"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
@@ -46,118 +62,23 @@
             android:inputType="textPassword"
             />
     </LinearLayout>
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal">-->
-<!--        <TextView-->
-<!--            android:text="First Name:"-->
-<!--            android:textSize="20dp"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            />-->
-<!--        <EditText-->
-<!--            android:id="@+id/editText_firstName"-->
-<!--            android:layout_width="250dp"-->
-<!--            android:ems="10"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            />-->
-<!--    </LinearLayout>-->
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal">-->
-<!--        <TextView-->
-<!--            android:text="Last Name:"-->
-<!--            android:textSize="20dp"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            />-->
-<!--        <EditText-->
-<!--            android:id="@+id/editText_lastName"-->
-<!--            android:layout_width="250dp"-->
-<!--            android:ems="10"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            />-->
-<!--    </LinearLayout>-->
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal">-->
-<!--        <TextView-->
-<!--            android:text="Address:"-->
-<!--            android:textSize="20dp"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            />-->
-<!--        <EditText-->
-<!--            android:id="@+id/editText_address"-->
-<!--            android:layout_width="250dp"-->
-<!--            android:ems="10"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            />-->
-<!--    </LinearLayout>-->
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal">-->
-<!--        <TextView-->
-<!--            android:text="City:"-->
-<!--            android:textSize="20dp"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            />-->
-<!--        <EditText-->
-<!--            android:id="@+id/editText_city"-->
-<!--            android:layout_width="250dp"-->
-<!--            android:ems="10"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            />-->
-<!--    </LinearLayout>-->
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal">-->
-<!--        <TextView-->
-<!--            android:text="Country:"-->
-<!--            android:textSize="20dp"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            />-->
-<!--        <EditText-->
-<!--            android:id="@+id/editText_country"-->
-<!--            android:layout_width="250dp"-->
-<!--            android:ems="10"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            />-->
-<!--    </LinearLayout>-->
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal">-->
-<!--        <TextView-->
-<!--            android:text="Postal Code:"-->
-<!--            android:textSize="20dp"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            />-->
-<!--        <EditText-->
-<!--            android:id="@+id/editText_postalCode"-->
-<!--            android:layout_width="250dp"-->
-<!--            android:ems="10"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            />-->
-<!--    </LinearLayout>-->
-
     <Button
         android:id="@+id/btn_register_submit"
         android:layout_width="290dp"
+        style="@style/button_margin"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Submit"
         android:onClick="btnRegister_submit_pressed"
         />
 
+    <Button
+        android:id="@+id/btn_backToLogin"
+        style="@style/back_button"
+        android:layout_width="290dp"
+        android:layout_height="42dp"
+        android:layout_gravity="center"
+        android:onClick="backToLogin_pressed"
+        android:text="Back" />
 
 </LinearLayout>

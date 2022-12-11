@@ -6,12 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.CartFragment">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:src="@drawable/empty_cart"
+        android:layout_margin="20dp"
+        android:visibility="invisible"
+        android:id="@+id/imageView_emptyCart"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your Cart is Empty"
+        style="@style/hint_text"
+        android:id="@+id/textView_cartEmpty"
+        android:visibility="invisible"
+      />
     <ListView
         android:id="@+id/listView_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         xmlns:tools="http://schemas.android.com/tools"
         tools:listitem="@layout/cartlist_item"
+
         android:focusable="true"
         />
     <androidx.viewpager.widget.ViewPager
@@ -20,5 +37,6 @@
         android:layout_height="75dp"
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
+
         app:menu="@menu/bottom_nav_menu"/> />
 </FrameLayout>

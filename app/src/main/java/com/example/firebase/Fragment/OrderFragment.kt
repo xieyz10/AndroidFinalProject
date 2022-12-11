@@ -44,12 +44,14 @@ class OrderFragment : Fragment() {
         orderList = arrayListOf<Order>()
         var contentView: View= inflater.inflate(R.layout.fragment_order, container, false)
         val listView = contentView.findViewById<ListView>(R.id.listView_order)
-        setListView(listView)
+        val emptyImage = contentView.findViewById<View>(R.id.imageView_order)
+        val emptyText= contentView.findViewById<View>(R.id.textView_order)
+        setListView(listView, emptyImage, emptyText)
         //setupListItemClickEvent(contentView)
         return contentView
     }
 
-    fun setListView(listView:ListView){
+    fun setListView(listView:ListView, emptyImage:View, emptyText:View){
         val sharedPref: SharedPreferences = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPref.edit()
         val userId = sharedPref.getString("userId","")
@@ -82,6 +84,22 @@ class OrderFragment : Fragment() {
                         orderObj.imageId = com.example.firebase.R.drawable.jasmine
                     }
                     orderList.add(orderObj)
+                }
+                // check cartList length is not zero
+                if(orderList.size == 0){
+                    // find the empty view by id
+                    emptyImage.visibility = View.VISIBLE
+                    emptyText.visibility = View.VISIBLE
+                    //
+                    // set listview visibility to gone
+                    listView.visibility = View.GONE
+
+                }else{
+                    // show listview
+                    listView.visibility = View.VISIBLE
+                    // hide empty view
+                    emptyImage.visibility = View.GONE
+                    emptyText.visibility = View.GONE
                 }
                 val listAdapter = OrderAdapter(activity!!,orderList)
                 listView.adapter = listAdapter

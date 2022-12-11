@@ -80,7 +80,10 @@ class RegisterActivity: AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success")
+                    Toast.makeText( context,"Success!", Toast.LENGTH_LONG).show()
                     val user = auth.currentUser
+                    // back to login
+                    finish()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
@@ -88,5 +91,10 @@ class RegisterActivity: AppCompatActivity() {
                         Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+    fun backToLogin_pressed(view: View){
+        if(view.id == R.id.btn_backToLogin){
+            finish()
+        }
     }
 }

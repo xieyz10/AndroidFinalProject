@@ -44,14 +44,17 @@ class CartFragment : Fragment() {
         // Inflate the layout for this fragment
         database = FirebaseDatabase.getInstance()
         dbRef = database.getReference("carts")
+
         var contentView: View= inflater.inflate(R.layout.fragment_cart, container, false)
         val listView = contentView.findViewById<ListView>(R.id.listView_cart)
-        setListView(listView)
+        val emptyImage= contentView.findViewById<View>(R.id.imageView_emptyCart)
+        val emptyText= contentView.findViewById<View>(R.id.textView_cartEmpty)
+        setListView(listView, emptyImage, emptyText)
         //setupListItemClickEvent(contentView)
         return contentView
     }
 
-    fun setListView(listView:ListView){
+    fun setListView(listView:ListView, emptyImage:View, emptyText:View){
         val sharedPref: SharedPreferences = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPref.edit()
         val userId = sharedPref.getString("userId","")
@@ -83,6 +86,22 @@ class CartFragment : Fragment() {
                         cartObj.imageId = com.example.firebase.R.drawable.jasmine
                     }
                     cartList.add(cartObj)
+                }
+                // check cartList length is not zero
+                if(cartList.size == 0){
+                    // find the empty view by id
+                    emptyImage.visibility = View.VISIBLE
+                    emptyText.visibility = View.VISIBLE
+                     //
+                    // set listview visibility to gone
+                    listView.visibility = View.GONE
+
+                }else{
+                    // show listview
+                    listView.visibility = View.VISIBLE
+                    // hide empty view
+                    emptyImage.visibility = View.GONE
+                    emptyText.visibility = View.GONE
                 }
                 val listAdapter = CartAdapter(activity!!,cartList)
                 listView.adapter = listAdapter

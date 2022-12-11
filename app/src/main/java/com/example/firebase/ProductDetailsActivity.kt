@@ -131,4 +131,10 @@ class ProductDetailsActivity: AppCompatActivity() {
             MediaPlayer.start()
         }
     }
+    fun btnBackToList_pressed(view:View){
+        if(view.id == R.id.btn_backToList){
+            var intent = Intent(this@ProductDetailsActivity, HomeActivity::class.java)
+            startActivity(intent)
+        }
+    }
 }
