@@ -127,7 +127,7 @@ class ProductDetailsActivity: AppCompatActivity() {
             }.addOnFailureListener{ err->
                 Toast.makeText( context,"Error ${err.message}", Toast.LENGTH_LONG).show()
             }
-            val MediaPlayer = MediaPlayer.create(this,R.raw.sound)
+            val MediaPlayer = MediaPlayer.create(this,R.raw.order_music)
             MediaPlayer.start()
         }
     }
