@@ -87,13 +87,13 @@ class SettingFragment : Fragment() {
                     val country = editText_country.text.toString()
                     val postalCode = editText_postalCode.text.toString()
                     if(snapshot.exists()){
-                        dbRef.child("users").child(userId!!).child("firstName").setValue(firstName)
-                        dbRef.child("users").child(userId!!).child("lastName").setValue(lastName)
-                        dbRef.child("users").child(userId!!).child("address").setValue(address)
-                        dbRef.child("users").child(userId!!).child("city").setValue(city)
-                        dbRef.child("users").child(userId!!).child("state").setValue(state)
-                        dbRef.child("users").child(userId!!).child("country").setValue(country)
-                        dbRef.child("users").child(userId!!).child("postalCode").setValue(postalCode)
+                        dbRef.child(userId!!).child("firstName").setValue(firstName)
+                        dbRef.child(userId!!).child("lastName").setValue(lastName)
+                        dbRef.child(userId!!).child("address").setValue(address)
+                        dbRef.child(userId!!).child("city").setValue(city)
+                        dbRef.child(userId!!).child("state").setValue(state)
+                        dbRef.child(userId!!).child("country").setValue(country)
+                        dbRef.child(userId!!).child("postalCode").setValue(postalCode)
                         Toast.makeText( context,"You info has been successfully updated!", Toast.LENGTH_LONG).show()
                     }else{
                         val user = User(userId,firstName,lastName,address,
